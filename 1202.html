@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>資管系個人網站</title>
+
+<style>
+/* ====== 全域樣式 ====== */
+body {
+  margin: 0;
+  font-family: "Microsoft JhengHei", sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 16px;
+}
+
+/* ====== 頂部導航列 ====== */
+nav {
+  background: #0d47a1;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 40px;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+nav .logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+}
+
+nav ul li {
+  position: relative;
+  cursor: pointer;
+}
+
+nav ul li:hover .dropdown {
+  display: block;
+}
+
+nav ul li a {
+  color: white;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ffeb3b;
+}
+
+/* ====== 下拉選單 ====== */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 38px;
+  background: white;
+  color: #333;
+  padding: 10px 0;
+  border-radius: 8px;
+  min-width: 160px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px 20px;
+  color: #333 !important;
+  transition: background 0.3s;
+}
+
+.dropdown a:hover {
+  background: #eeeeee;
+}
+
+/* ====== Hero 輪播 Banner ====== */
+.hero {
+  margin-top: 70px;
+  height: 450px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 0 0 20px 20px;
+}
+
+.hero img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1.5s;
+}
+
+.hero img.active {
+  opacity: 1;
+}
+
+/* ====== Section ====== */
+.section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-title {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #0d47a1;
+  border-left: 5px solid #ffeb3b;
+  padding-left: 12px;
+}
+
+/* ====== 內文樣式 ====== */
+.section p {
+  font-size: 16px;
+  color: #555;
+}
+
+.section ul {
+  list-style-type: disc;
+  margin-left: 25px;
+}
+
+.section ul li {
+  margin-bottom: 8px;
+}
+
+/* ====== 卡片區塊 ====== */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content h3 {
+  margin-top: 0;
+  color: #0d47a1;
+}
+
+.card-content p {
+  color: #666;
+  font-size: 15px;
+}
+
+/* ====== Footer ====== */
+footer {
+  background: #0d47a1;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+/* ====== 按鈕樣式 ====== */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #ffeb3b;
+  color: #0d47a1;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #fdd835;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ====== 導航欄 ====== -->
+<nav>
+  <div class="logo">資管網站</div>
+
+  <ul>
+    <li><a href="#home">首頁</a></li>
+
+    <li>
+      <a href="#">關於我</a>
+      <div class="dropdown">
+        <a href="#about">個人介紹</a>
+        <a href="#skills">技能專長</a>
+        <a href="#resume">履歷下載</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">專案作品</a>
+      <div class="dropdown">
+        <a href="#projects">課程專案</a>
+        <a href="#research">研究專案</a>
+        <a href="#app">APP/網站作品</a>
+      </div>
+    </li>
+
+    <li><a href="#contact">聯絡我</a></li>
+  </ul>
+</nav>
+
+<!-- ====== Hero 輪播 ====== -->
+<div class="hero">
+  <img src="https://picsum.photos/1200/450?random=1" class="active" />
+  <img src="https://picsum.photos/1200/450?random=2" />
+  <img src="https://picsum.photos/1200/450?random=3" />
+</div>
+
+<!-- ====== Section：關於我 ====== -->
+<div class="section" id="about">
+  <div class="section-title">關於我</div>
+  <p>我的研究興趣涵蓋資訊安全、資料庫管理、雲端服務與使用者體驗設計。我擅長協作與跨領域專案開發，曾擔任多個專案小組的技術負責人。</p>
+</div>
+
+<!-- ====== Section：技能專長 ====== -->
+<div class="section" id="skills">
+  <div class="section-title">技能專長</div>
+  <ul>
+    <li>程式語言：Java, Python, JavaScript, SQL</li>
+    <li>前端開發：HTML5, CSS3, React, Bootstrap</li>
+    <li>後端開發：Node.js, Express, MongoDB, MySQL</li>
+    <li>行動應用：Flutter, Firebase</li>
+    <li>資料分析：Python Pandas, NumPy, Power BI, Tableau</li>
+    <li>資訊安全：網頁資安測試、漏洞掃描、加密演算法</li>
+    <li>設計工具：Figma, Adobe XD, Photoshop</li>
+  </ul>
+</div>
+
+<!-- ====== Section：課程專案 ====== -->
+<div class="section" id="projects">
+  <div class="section-title">課程專案</div>
+
+  <div class="card-container">
+    <div class="card">
+      <img src="https://picsum.photos/600/300?random=21" />
+      <div class="card-content">
+        <h3>資料庫管理系統</h3>
+        <p>設計並實作企業級資料庫系統，使用 MySQL 與 Node.js 進行前後端整合，支援多角色登入與報表生成。</p>
+        <a class="button" href="#">專案詳情</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/600/300?random=22" />
+      <div class="card-content">
+        <h3>電子商務網站</h3>
+        <p>使用 React 與 Firebase 開發前端，後端整合支付功能與會員系統，實現完整購物流程。</p>
+        <a class="button" href="#">專案詳情</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/600/300?random=23" />
+      <div class="card-content">
+        <h3>資料視覺化專案</h3>
+        <p>利用 Python 與 Power BI 將企業銷售資料轉化為互動式 Dashboard，協助決策者分析趨勢。</p>
+        <a class="button" href="#">專案詳情</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== Section：研究專案 ====== -->
+<div class="section" id="research">
+  <div class="section-title">研究專案</div>
+  <ul>
+    <li>雲端資料安全研究：分析 AWS 與 Azure 雲端資安漏洞，提出安全建議。</li>
+    <li>深度學習影像辨識：使用 TensorFlow 建立影像分類模型，提升辨識準確率至 92%。</li>
+    <li>智慧化行動應用：開發結合 IoT 與 Flutter 的智慧家居控制 App。</li>
+  </ul>
+</div>
+
+<!-- ====== Section：聯絡我 ====== -->
+<div class="section" id="contact">
+  <div class="section-title">聯絡我</div>
+  <p>如有專案合作或技術交流，歡迎聯絡我：</p>
+  <p>Email：<a href="mailto:yourname@example.com">yourname@example.com</a></p>
+  <p>手機：0912-345-678</p>
+  <p>LinkedIn：<a href="#">linkedin.com/in/username</a></p>
+</div>
+
+<!-- ====== Footer ====== -->
+<footer>
+  © 2025 資管系個人網站. All Rights Reserved.
+</footer>
+
+<script>
+/* ====== Hero 輪播功能 ====== */
+let index = 0;
+const images = document.querySelectorAll(".hero img");
+
+setInterval(() => {
+  images[index].classList.remove("active");
+  index = (index + 1) % images.length;
+  images[index].classList.add("active");
+}, 4000);
+</script>
+
+</body>
+</html>
